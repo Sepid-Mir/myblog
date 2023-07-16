@@ -6,12 +6,12 @@ const Article = () => {
   const article = articles.find(article => article.name === articleId)
   return (
     <>
-      <h2> {article.content} </h2>
-      {article.content.map(p => {
+      <h2> {article.title} </h2>
+      {article.content.map(paragraph => (
         <p>
-          {p}
+          {paragraph}
         </p>
-      })}
+      ))}
 
     </>)
 }
