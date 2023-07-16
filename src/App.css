@@ -12,6 +12,9 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
+p {
+  font-size: 14px;
+}
 
 h3, h4 {
   margin-bottom: 0;
