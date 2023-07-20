@@ -5,18 +5,20 @@ import HomePage from './pages/HomePage.js';
 import AboutPage from './pages/AboutPage.js';
 import ArticlesListPage from './pages/ArticlesListPage.js';
 import Article from './pages/Article.js';
+import PageNotFound from './pages/PageNotFound.js';
 import NavBar from './NavBar.js';
 
 function App() {
   return (
     <BrowserRouter className="App">
-      <NavBar/> 
+      <NavBar />
       <div id="page-body">
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/articles" element={<ArticlesListPage />}></Route>
           < Route path="/articles/:id" element={<Article />}> </Route>
+          <Route path="/*" element={<PageNotFound />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
