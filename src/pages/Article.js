@@ -4,6 +4,7 @@ const Article = () => {
   const params = useParams();
   const articleId = params.id;
   const article = articles.find(article => article.name === articleId)
+  if (!article) return <h1> 404: Page Not Found!</h1>
   return (
     <>
       <h2> {article.title} </h2>
