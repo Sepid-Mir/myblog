@@ -20,7 +20,7 @@ app.put('/api/articles/:name/upvote', (req, res) => {
   let article = articlesInfo.find(article => (article.name === name));
   if (article) {
     article.upvote += 1;
-    res.send(`The ${name} article now got ${article.upvote} upvotes!`)
+    res.send(`The ${name} article now got ${article.upvote} upvotes!!!`)
   }
   else {
     res.send('Article not found!');
