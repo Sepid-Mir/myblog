@@ -2,6 +2,7 @@ import articles from './article-content.js';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import ArticleComments from '../components/ArticleComments.js';
 const Article = () => {
   const [articleInfo, setArticleInfo] = useState({ upvote: 0, comments: [] });
   const { id } = useParams();
@@ -9,8 +10,8 @@ const Article = () => {
   useEffect(() => {
     const getInfo = async () => {
       const response = await axios.get(`/api/articles/${id}`);
-    const newArticleInfo = await response.data;
-    setArticleInfo(newArticleInfo);
+      const newArticleInfo = await response.data;
+      setArticleInfo(newArticleInfo);
     }
     getInfo();
   }, [])
@@ -26,6 +27,7 @@ const Article = () => {
           {paragraph}
         </p>
       ))}
+      <ArticleComments comments={articleInfo.comments}/>
 
     </>)
 }
