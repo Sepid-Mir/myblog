@@ -6,7 +6,6 @@ import ArticleComments from '../components/ArticleComments.js';
 const Article = () => {
   const [articleInfo, setArticleInfo] = useState({ upvote: 0, comments: [] });
   const { id } = useParams();
-  const article = articles.find(a => a.name === id);
   useEffect(() => {
     const getInfo = async () => {
       const response = await axios.get(`/api/articles/${id}`);
@@ -15,20 +14,29 @@ const Article = () => {
     }
     getInfo();
   }, [])
+  const article = articles.find(a => a.name === id);
+  const clickUpvote = async () => {
+  const response = await axios.put(`/api/articles/${id}/upvote`);
+  const updatedArticle = response.data;
+  setArticleInfo(updatedArticle);
+}
+if (!article) return <h1> 404: Page Not Found!</h1>
 
-  if (!article) return <h1> 404: Page Not Found!</h1>
-
-  return (
-    <>
-      <h2> {article.title} </h2>
+return (
+  <>
+    <h2> {article.title} </h2>
+    <div id="upvotes-section">
+      <button onClick={clickUpvote}> Upvote</button>
       <p> The article has {articleInfo.upvote} upvote(s)!</p>
-      {article.content.map(paragraph => (
-        <p>
-          {paragraph}
-        </p>
-      ))}
-      <ArticleComments comments={articleInfo.comments}/>
+    </div>
 
-    </>)
+    {article.content.map(paragraph => (
+      <p>
+        {paragraph}
+      </p>
+    ))}
+    <ArticleComments comments={articleInfo.comments} />
+
+  </>)
 }
 export default Article;
